@@ -1,4 +1,8 @@
-> 目录结构和原项目一致，增加`dist`目录作为`ts`编译文件存放位置
+
+# typescript-node-boilerplate
+a koa back-end application in Typescript.
+
+> 该项目通过将一个普通的`node`项目转化过来，[原项目地址](https://github.com/shenyiling/koa-introduction)，可以了解下两个项目之间的区别，目录结构和原项目一致，增加`dist`目录作为`ts`编译文件的存放位置
 #### 项目命令说明
 > 详细命令可查看`package.json`内的`scripts`字段
 
