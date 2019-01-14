@@ -1,10 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const bcrypt = require("bcrypt");
+const config = require("config");
 const models_1 = require("../../models");
 const helper_1 = require("./helper");
 const validate_1 = require("./validate");
 const { signup, accountUpdate, queryByName, queryById: queryByIdValidate } = validate_1.default;
-exports.signUp = async (ctx, next) => {
+const saltRounds = config.get('saltRounds');
+exports.signUp = async (ctx, _) => {
     const validateRes = helper_1.default.joiValite('request body')(ctx.request.body, signup);
     if (validateRes) {
         ctx.body = validateRes;
@@ -19,9 +22,10 @@ exports.signUp = async (ctx, next) => {
         };
         return;
     }
+    const hashPwd = await bcrypt.hash(accountPwd, saltRounds);
     const cResult = await models_1.accountModel.create({
         accountName,
-        accountPwd: helper_1.default.md5Encrypt(accountPwd)
+        accountPwd: hashPwd
     });
     if (cResult.errors) {
         console.error('插入失败', cResult.errors);
@@ -37,7 +41,7 @@ exports.signUp = async (ctx, next) => {
         };
     }
 };
-exports.signIn = async (ctx, next) => {
+exports.signIn = async (ctx, _) => {
     const validateRes = helper_1.default.joiValite('request body')(ctx.request.body, signup);
     if (validateRes) {
         ctx.body = validateRes;
@@ -61,7 +65,7 @@ exports.signIn = async (ctx, next) => {
     };
     return;
 };
-exports.update = async (ctx, next) => {
+exports.update = async (ctx, _) => {
     const validateRes = helper_1.default.joiValite('request body')(ctx.request.body, accountUpdate);
     if (validateRes) {
         ctx.body = validateRes;

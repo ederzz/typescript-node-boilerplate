@@ -6,6 +6,8 @@
     "outDir": "./dist/",
     "sourceMap": false,
     "removeComments": true,
+    "noUnusedParameters": true, // 未使用参数报错
+    "noUnusedLocals": true, // 未使用局部变量报错
     // "moduleResolution": "node",
     "target": "es2017",
     "noImplicitAny": true, // 强类型检查，false会在无法判断类型时使用any替代

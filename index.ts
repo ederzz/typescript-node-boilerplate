@@ -14,6 +14,7 @@ import accountRouter from './router/account'
 import apiTestRouter from './router/apiTest'
 import githubApiRouter from './router/githubApi'
 import uploadRouter from './router/upload'
+import crawlerRouter from './router/crawler'
 import { mimeCollections } from './constants'
 import MongooseStart from './models/db'
 
@@ -91,7 +92,8 @@ try {
     app.use(accountRouter.routes())
     app.use(apiTestRouter.routes())
     app.use(githubApiRouter.routes())
-    // app.use(uploadRouter.routes())
+    app.use(uploadRouter.routes())
+    app.use(crawlerRouter.routes())
 
     app.listen(port, () => {
         console.log(chalk.green(`server is running at ${hostname}:${port}`));

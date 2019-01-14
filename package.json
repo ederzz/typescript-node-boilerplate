@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cp -r ./views/ ./dist/views && cp -r ./log/ ./dist/log && tsc && node dist/index.js",
+    "start": "cp -r ./views/ ./dist/views && cp -r ./log/ ./dist/log && tsc && node --inspect dist/index.js",
     "build": "cp -r ./views/ ./dist/views && cp -r ./log/ ./dist/log && tsc",
     "ts_node": "ts-node --files index.ts",
     "dev": "npx nodemon"
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.3",
     "cheerio": "^1.0.0-rc.2",
     "config": "^1.30.0",
     "is-generator-function": "^1.0.7",
@@ -28,6 +29,7 @@
     "shortid": "^2.2.14"
   },
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/cheerio": "^0.22.10",
     "@types/config": "^0.0.34",
     "@types/joi": "^14.0.1",

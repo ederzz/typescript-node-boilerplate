@@ -12,7 +12,7 @@ interface Contributions {
     [k: string]: Record<Month, MonthContributions>
 }
 
-const { parseUrlQuery, Base64 } = utils
+const { parseUrlQuery } = utils
 const router = new Router({
     prefix: '/oauth'
 }) 
@@ -52,7 +52,7 @@ router
         format
     } = ctx.params
     const {
-        status,
+        // status,
         data
     } = await axios.get(`https://github.com/${nickname}`)
     const $: CheerioStatic = cheerio.load(data)

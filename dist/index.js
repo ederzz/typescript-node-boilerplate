@@ -14,6 +14,8 @@ const router_1 = require("./router");
 const account_1 = require("./router/account");
 const apiTest_1 = require("./router/apiTest");
 const githubApi_1 = require("./router/githubApi");
+const upload_1 = require("./router/upload");
+const crawler_1 = require("./router/crawler");
 const constants_1 = require("./constants");
 const db_1 = require("./models/db");
 const hostname = config.get('host.hostname');
@@ -71,6 +73,8 @@ try {
     app.use(account_1.default.routes());
     app.use(apiTest_1.default.routes());
     app.use(githubApi_1.default.routes());
+    app.use(upload_1.default.routes());
+    app.use(crawler_1.default.routes());
     app.listen(port, () => {
         console.log(chalk_1.default.green(`server is running at ${hostname}:${port}`));
         console.log(process.env.NODE_ENV);

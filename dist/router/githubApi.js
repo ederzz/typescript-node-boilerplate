@@ -5,7 +5,7 @@ const Router = require("koa-router");
 const axios_1 = require("axios");
 const lodash_1 = require("lodash");
 const utils_1 = require("../utils");
-const { parseUrlQuery, Base64 } = utils_1.default;
+const { parseUrlQuery } = utils_1.default;
 const router = new Router({
     prefix: '/oauth'
 });
@@ -35,7 +35,7 @@ router
 })
     .get('/:nickname/:format', async (ctx, _) => {
     const { nickname, format } = ctx.params;
-    const { status, data } = await axios_1.default.get(`https://github.com/${nickname}`);
+    const { data } = await axios_1.default.get(`https://github.com/${nickname}`);
     const $ = cheerio.load(data);
     const contributionsData = $('rect').get().reduce((data, rect) => {
         const value = (() => {
