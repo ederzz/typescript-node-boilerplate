@@ -35,6 +35,14 @@ app.use(async (_, next) => {
         fs.appendFileSync(errorFilePath, errorLog);
     }
 });
+app.use(async (ctx, next) => {
+    const sTime = Date.now();
+    await next();
+    const eTime = Date.now();
+    const log = `请求地址：${ctx.path},请求方法：${ctx.request.method},响应时间：${eTime - sTime}ms,响应状态:${ctx.response.status}--请求时间：${new Date()}\n`;
+    console.log(chalk_1.default.green(log));
+    fs.appendFileSync(logFilePath, log);
+});
 app.use(serve(staticDirPath));
 app.use(nunjucks({
     ext: 'html',
@@ -68,14 +76,6 @@ app.use(bodyParser({
     multipart: true,
     urlencoded: true
 }));
-app.use(async (ctx, next) => {
-    const sTime = Date.now();
-    await next();
-    const eTime = Date.now();
-    const log = `请求地址：${ctx.path},请求方法：${ctx.request.method},响应时间：${eTime - sTime}ms,响应状态:${ctx.response.status}--请求时间：${new Date()}\n`;
-    console.log(chalk_1.default.green(log));
-    fs.appendFileSync(logFilePath, log);
-});
 app.use(cors());
 app.use(router_1.default.routes());
 app.use(account_1.default.routes());
