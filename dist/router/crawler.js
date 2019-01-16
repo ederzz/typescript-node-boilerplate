@@ -7,6 +7,7 @@ const router = new Router({
     prefix: '/crawler'
 });
 const siteAddress = 'https://www.qidian.com/';
+const xzSiteAddress = 'https://www.biquge.info/2_2309/';
 router
     .get('/bookClassifyList', async (ctx) => {
     const { status, data } = await axios_1.default.get(siteAddress);
@@ -62,5 +63,22 @@ router
         });
     });
     ctx.body = rankListData;
+})
+    .get('/xz/chapter-list', async (ctx) => {
+    const { status, data } = await axios_1.default.get(xzSiteAddress);
+    if (status !== 200) {
+        ctx.body = '请求失败';
+        return;
+    }
+    const $ = cheerio_1.load(data);
+    const chapterList = $('.box_con > #list > dl');
+    const chapterListData = [];
+    chapterList.children().each((_, chapter) => {
+        chapterListData.push({
+            name: $(chapter).text(),
+            link: `${xzSiteAddress}${$(chapter).attr('href')}`
+        });
+    });
+    ctx.body = chapterListData;
 });
 exports.default = router;

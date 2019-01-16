@@ -1,27 +1,35 @@
 {
   "compilerOptions": {
-    // "allowSyntheticDefaultImports": true,
-    "allowJs": true, // 需要编译js文件
+    "allowJs": true, // 允许编译js文件
     "checkJs": false,  // 报告js文件错误
-    "outDir": "./dist/",
+    "outDir": "./dist/", // 指定输出文件的根目录
     "sourceMap": false,
     "removeComments": true,
-    "noUnusedParameters": true, // 未使用参数报错
-    "noUnusedLocals": true, // 未使用局部变量报错
-    // "moduleResolution": "node",
-    "target": "es2017",
-    "noImplicitAny": true, // 强类型检查，false会在无法判断类型时使用any替代
-    "experimentalDecorators": true, // ?
+    "noUnusedParameters": true, // 存在未使用参数报错
+    "noUnusedLocals": true, // 存在未使用局部变量报错
+    "target": "es2017", 
+    "noImplicitAny": true, // 强类型检查，设为false会在无法判断类型时使用any替代
+    "experimentalDecorators": true, // 支持es7的装饰器特性
     "lib": [
       "es6",
       "es7"
-    ], // 添加需要解析的语法，否则TS会报错
-    "module": "CommonJS" // 指定生成哪个模块的代码
+    ], // 需要解析的语法，否则TS会报错
+    "module": "CommonJS", // 指定生成哪个模块系统的代码
+    // "noImplicitReturns": true, // 设置为true时，如果函数不是所有路径都有返回值，会提示error
+    // "allowUnusedLabels": true, // 允许有未使用的标签
     // "declaation": true, 
     // "declarationDir": "",
-    // "baseUrl": "", ?
+    // "baseUrl": "", // 解析模块时的基准目录
+    // "allowUnreachableCode": true, // 允许有不能访问的代码
+    // "outFile": "",  // 指定将多个ts文件的输出合并到一个文件中
+    // "moduleResolution": "node", // 模块解析策略，查找导入模块时走的流程
+    // "watch": true, // 监听文件变化，当文件变化时，重新编译 
+    // "rootDir": "", // ?
+    // "declaration": true // 生成对应的d.ts文件
   },
-  "includes": [
-    "./externals.d.ts"
-  ]
+  // "include": [
+  //   "./externals.d.ts"
+  // ],
+  // "exclude": [], // 排除不需要编译的文件列表
+  // "files": [] // 指定后仅仅编译files中的文件
 }

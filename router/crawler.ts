@@ -1,5 +1,5 @@
 import * as Router from 'koa-router'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import {
     load
 } from 'cheerio'
@@ -8,6 +8,7 @@ const router = new Router({
     prefix: '/crawler'
 })
 const siteAddress: string = 'https://www.qidian.com/' // 站点地址
+const xzSiteAddress: string = 'https://www.biquge.info/2_2309/'
 
 interface ClassifyItem {
     classify: string,
@@ -22,12 +23,17 @@ interface RankList {
     books: Book[]
 }
 
+interface XzChapter {
+    name: string,
+    link: string
+}
+
 router
 .get('/bookClassifyList', async (ctx) => {
     const {
         status,
         data
-    } = await axios.get(siteAddress)
+    }: AxiosResponse = await axios.get(siteAddress)
     if (status !== 200) {
         ctx.body = '请求失败'
         return 
@@ -53,7 +59,7 @@ router
     const {
         status,
         data
-    } = await axios.get(siteAddress)
+    }: AxiosResponse = await axios.get(siteAddress)
     if (status !== 200) {
         ctx.body = '请求失败'
         return
@@ -93,6 +99,29 @@ router
     })
 
     ctx.body = rankListData
+})
+.get('/xz/chapter-list', async (ctx) => {
+    const {
+        status,
+        data
+    }: AxiosResponse = await axios.get(xzSiteAddress)
+    if (status !== 200) {
+        ctx.body = '请求失败'
+        return
+    }
+
+    const $: CheerioStatic = load(data)
+    const chapterList: Cheerio = $('.box_con > #list > dl')
+    const chapterListData: XzChapter[] = []
+
+    chapterList.children().each((_, chapter) => {
+        chapterListData.push({
+            name: $(chapter).text(),
+            link: `${xzSiteAddress}${$(chapter).attr('href')}`
+        })
+    })
+
+    ctx.body = chapterListData
 })
 
 export default router
