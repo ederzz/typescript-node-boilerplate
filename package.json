@@ -1,5 +1,5 @@
 {
-  "name": "koa-introduction",
+  "name": "typescript-node-boilerplate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -33,7 +33,7 @@
     "@types/cheerio": "^0.22.10",
     "@types/config": "^0.0.34",
     "@types/joi": "^14.0.1",
-    "@types/koa": "^2.0.47",
+    "@types/koa": "^2.0.48",
     "@types/koa-router": "^7.0.35",
     "@types/koa-static": "^4.0.0",
     "@types/koa2-cors": "^2.0.1",
@@ -42,10 +42,10 @@
     "@types/mongoose": "^5.3.5",
     "@types/node": "^10.12.18",
     "@types/shortid": "^0.0.29",
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "cross-env": "^5.2.0",
     "nodemon": "^1.18.9",
     "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.4"
   }
 }

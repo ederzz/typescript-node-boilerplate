@@ -11,7 +11,7 @@ const router = new Router({
 });
 router
     .post('/authorize', async (ctx, _) => {
-    const { code } = ctx.request.body;
+    const { code } = ctx.body;
     const { status, data } = await axios_1.default.post('https://github.com/login/oauth/access_token', {
         client_id: 'f6226fc2f9f77937df56',
         client_secret: '',

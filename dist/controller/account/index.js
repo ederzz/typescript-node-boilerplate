@@ -8,12 +8,12 @@ const validate_1 = require("./validate");
 const { signup, accountUpdate, queryByName, queryById: queryByIdValidate } = validate_1.default;
 const saltRounds = config.get('saltRounds');
 exports.signUp = async (ctx, _) => {
-    const validateRes = helper_1.default.joiValite('request body')(ctx.request.body, signup);
+    const validateRes = helper_1.default.joiValite('request body')(ctx.body, signup);
     if (validateRes) {
         ctx.body = validateRes;
         return;
     }
-    const { accountName, accountPwd } = ctx.request.body;
+    const { accountName, accountPwd } = ctx.body;
     const result = await models_1.accountModel.findOne({ accountName });
     if (result) {
         ctx.body = {
@@ -42,12 +42,12 @@ exports.signUp = async (ctx, _) => {
     }
 };
 exports.signIn = async (ctx, _) => {
-    const validateRes = helper_1.default.joiValite('request body')(ctx.request.body, signup);
+    const validateRes = helper_1.default.joiValite('request body')(ctx.body, signup);
     if (validateRes) {
         ctx.body = validateRes;
         return;
     }
-    const { accountName, accountPwd } = ctx.request.body;
+    const { accountName, accountPwd } = ctx.body;
     const res = await models_1.accountModel.findOne({
         accountName,
         accountPwd: helper_1.default.md5Encrypt(accountPwd)
@@ -66,12 +66,12 @@ exports.signIn = async (ctx, _) => {
     return;
 };
 exports.update = async (ctx, _) => {
-    const validateRes = helper_1.default.joiValite('request body')(ctx.request.body, accountUpdate);
+    const validateRes = helper_1.default.joiValite('request body')(ctx.body, accountUpdate);
     if (validateRes) {
         ctx.body = validateRes;
         return;
     }
-    const { accountName, accountPwd, newPwd } = ctx.request.body;
+    const { accountName, accountPwd, newPwd } = ctx.body;
     const res = await models_1.accountModel.findOne({
         accountName,
         accountPwd: helper_1.default.md5Encrypt(accountPwd)
@@ -99,7 +99,7 @@ exports.update = async (ctx, _) => {
 };
 exports.queryAccount = async (ctx, _) => {
     try {
-        const validateRes = helper_1.default.joiValite('request query')(ctx.request.query, queryByName);
+        const validateRes = helper_1.default.joiValite('request query')(ctx.query, queryByName);
         if (validateRes) {
             ctx.body = validateRes;
             return;

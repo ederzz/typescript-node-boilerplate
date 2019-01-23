@@ -7,7 +7,7 @@ const router = new Router({
     prefix: '/upload'
 })
 
-router.post('/file', (ctx, _) => {
+router.post('/file', (ctx: Router.IRouterContext, _) => {
     const {
         files: {
             file: {

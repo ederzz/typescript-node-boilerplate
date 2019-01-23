@@ -19,7 +19,7 @@ const router = new Router({
 
 router
 .post('/authorize', async (ctx, _) => {
-    const { code } = ctx.request.body
+    const { code } = ctx.body
     const {
         status,
         data

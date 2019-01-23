@@ -19,7 +19,7 @@ exports.param = (ctx, _) => {
     ctx.body = `参数存放在url中,用户id：${ctx.params.id}`;
 };
 exports.addUser = (ctx, _) => {
-    const { name, age } = ctx.request.body;
+    const { name, age } = ctx.body;
     ctx.body = `post传参：${age}岁的${name}`;
 };
 exports.all = () => {

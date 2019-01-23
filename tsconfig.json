@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // "allowSyntheticDefaultImports": true,
     "allowJs": true, // 允许编译js文件
     "checkJs": false,  // 报告js文件错误
     "outDir": "./dist/", // 指定输出文件的根目录
@@ -14,10 +15,10 @@
       "es6",
       "es7"
     ], // 需要解析的语法，否则TS会报错
-    "module": "CommonJS", // 指定生成哪个模块系统的代码
+    "module": "CommonJS" // 指定生成哪个模块系统的代码
     // "noImplicitReturns": true, // 设置为true时，如果函数不是所有路径都有返回值，会提示error
     // "allowUnusedLabels": true, // 允许有未使用的标签
-    // "declaation": true, 
+    // "declaation": true,
     // "declarationDir": "",
     // "baseUrl": "", // 解析模块时的基准目录
     // "allowUnreachableCode": true, // 允许有不能访问的代码
@@ -26,7 +27,7 @@
     // "watch": true, // 监听文件变化，当文件变化时，重新编译 
     // "rootDir": "", // ?
     // "declaration": true // 生成对应的d.ts文件
-  },
+  }
   // "include": [
   //   "./externals.d.ts"
   // ],

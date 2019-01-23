@@ -1,10 +1,10 @@
-import { Context } from 'koa'
+import { IRouterContext } from 'koa-router'
 
 const {
     timeModel
 } = require('../../models')
 
-export const genOneDocument = async (ctx: Context, _: Function) => {
+export const genOneDocument = async (ctx: IRouterContext, _: Function) => {
     try {
         await timeModel.create({
             time: Date.now()

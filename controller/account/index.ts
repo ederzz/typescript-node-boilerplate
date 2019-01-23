@@ -1,6 +1,6 @@
-import { Context } from 'koa'
 import * as bcrypt from 'bcrypt'
 import * as config from 'config'
+import { IRouterContext } from 'koa-router'
 import { accountModel } from '../../models'
 import helper from './helper'
 import validateObj from './validate'
@@ -14,8 +14,8 @@ const {
 
 const saltRounds: number = config.get('saltRounds')
 
-export const signUp = async (ctx: Context, _: Function) => {
-    const validateRes = helper.joiValite('request body')(ctx.request.body, signup)
+export const signUp = async (ctx: IRouterContext, _: Function) => {
+    const validateRes = helper.joiValite('request body')(ctx.body, signup)
     if(validateRes) {
         ctx.body = validateRes
         return ;
@@ -24,7 +24,7 @@ export const signUp = async (ctx: Context, _: Function) => {
     const {
         accountName,
         accountPwd
-    } = ctx.request.body;
+    } = ctx.body;
 
     const result = await accountModel.findOne({ accountName });
 
@@ -57,8 +57,8 @@ export const signUp = async (ctx: Context, _: Function) => {
     }
 }
 
-export const signIn = async (ctx: Context, _: Function) => {
-    const validateRes = helper.joiValite('request body')(ctx.request.body, signup)
+export const signIn = async (ctx: IRouterContext, _: Function) => {
+    const validateRes = helper.joiValite('request body')(ctx.body, signup)
     if(validateRes) {
         ctx.body = validateRes
         return ;
@@ -67,7 +67,7 @@ export const signIn = async (ctx: Context, _: Function) => {
     const {
         accountName,
         accountPwd
-    } = ctx.request.body;
+    } = ctx.body;
 
     const res = await accountModel.findOne({
         accountName,
@@ -88,8 +88,8 @@ export const signIn = async (ctx: Context, _: Function) => {
     return ;
 }
 
-export const update = async (ctx: Context, _: Function) => {
-    const validateRes = helper.joiValite('request body')(ctx.request.body, accountUpdate)
+export const update = async (ctx: IRouterContext, _: Function) => {
+    const validateRes = helper.joiValite('request body')(ctx.body, accountUpdate)
     if(validateRes) {
         ctx.body = validateRes
         return ;
@@ -99,7 +99,7 @@ export const update = async (ctx: Context, _: Function) => {
         accountName,
         accountPwd,
         newPwd
-    } = ctx.request.body;
+    } = ctx.body;
 
     const res = await accountModel.findOne({
         accountName,
@@ -128,9 +128,9 @@ export const update = async (ctx: Context, _: Function) => {
     return ;
 }
 
-export const queryAccount = async (ctx: Context, _: Function) => {
+export const queryAccount = async (ctx: IRouterContext, _: Function) => {
     try {
-        const validateRes = helper.joiValite('request query')(ctx.request.query, queryByName)
+        const validateRes = helper.joiValite('request query')(ctx.query, queryByName)
         if(validateRes) {
             ctx.body = validateRes
             return ;
@@ -150,7 +150,7 @@ export const queryAccount = async (ctx: Context, _: Function) => {
     }
 }
 
-export const queryById = async (ctx: Context, _: Function) => {
+export const queryById = async (ctx: IRouterContext, _: Function) => {
     try {
         const validateRes = helper.joiValite('request query')(ctx.request.query, queryByIdValidate)
         if(validateRes) {

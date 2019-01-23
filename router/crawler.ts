@@ -111,17 +111,29 @@ router
     }
 
     const $: CheerioStatic = load(data)
-    const chapterList: Cheerio = $('.box_con > #list > dl')
-    const chapterListData: XzChapter[] = []
-
-    chapterList.children().each((_, chapter) => {
-        chapterListData.push({
-            name: $(chapter).text(),
-            link: `${xzSiteAddress}${$(chapter).attr('href')}`
-        })
-    })
-
-    ctx.body = chapterListData
+    const chapterList = $('.box_con > #list > dl').children()
+    const chaptersNum: number = chapterList.length
+    const promiseNum: number = Math.ceil(chaptersNum / 100)
+    const promises: Promise<XzChapter[]>[] = []
+    for (let i = 0;i < promiseNum;i++) {
+        promises.push(
+            new Promise((resolve, _) => {
+                const chaptersArr: XzChapter[] = []
+                chapterList.slice(i * 100, i * 100 + 100).each((_, chapter) => {
+                    chaptersArr.push({
+                        name: $(chapter).text(),
+                        link: `${xzSiteAddress}${$(chapter).find('a').attr('href')}`
+                    })
+                })
+                resolve(chaptersArr)
+            })
+        )
+    }
+    const chapterListData = await Promise.all(promises)
+    ctx.body = chapterListData.reduce((data, current) => {
+        data.push(...current)
+        return data
+    }, [])
 })
 
 export default router
