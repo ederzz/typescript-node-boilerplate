@@ -2,7 +2,6 @@
 # typescript-node-boilerplate
 a koa back-end application in Typescript.
 
-> 该项目通过将一个普通的`node`项目转化过来，[原项目地址](https://github.com/shenyiling/koa-introduction)，可以了解下两个项目之间的区别，目录结构和原项目一致，增加`dist`目录作为`ts`编译文件的存放位置
 #### 项目命令说明
 > 详细命令可查看`package.json`内的`scripts`字段
 
@@ -19,4 +18,34 @@ a koa back-end application in Typescript.
     "exec": "npm start", // 监听变化后执行npm start命令
     "ext": "ts" // 监听ts文件
 }
+```
+
+#### 目录结构
+```
+├── dist                    ts打包输出目录
+├── config
+│   ├── default.json        默认项目配置
+│   └── production.json     生产环境项目配置
+├── controller              路由处理逻辑
+├── log                     日志目录
+│   ├── app.log             
+│   └── error.log
+├── models                  数据库模型
+│   ├── db.ts               链接数据库
+│   └── index.ts
+├── router                  app路由
+├── static                  静态资源
+├── views                   html模板
+├── index.ts                启动文件
+├── utils.ts                工具函数
+├── constants.ts            常量
+├── externals.d.ts
+├── nodemon.json            nodemon配置文件
+├── package-lock.json
+├── package.json
+├── Dockerfile
+├── README.md
+├── tsconfig.json
+├── yarn-error.log
+└── yarn.lock
 ```
