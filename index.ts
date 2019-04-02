@@ -17,6 +17,7 @@ import uploadRouter from './router/upload'
 import crawlerRouter from './router/crawler'
 import { mimeCollections } from './constants'
 import MongooseStart from './models/db'
+import mysqlDb from './models/mysql'
 
 const hostname: string = config.get('host.hostname')
 const port: number = config.get('host.port')
@@ -25,6 +26,7 @@ const logFilePath: string = path.resolve(__dirname, 'log/app.log') // log文件�
 const errorFilePath: string = path.resolve(__dirname, 'log/error.log') // 错误日志文件路径
 const mongooseStart = new MongooseStart()
 mongooseStart.setUpDb()
+mysqlDb.testConnection()
 
 const app = new Koa()
 

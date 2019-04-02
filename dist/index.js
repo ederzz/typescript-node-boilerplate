@@ -18,6 +18,7 @@ const upload_1 = require("./router/upload");
 const crawler_1 = require("./router/crawler");
 const constants_1 = require("./constants");
 const db_1 = require("./models/db");
+const mysql_1 = require("./models/mysql");
 const hostname = config.get('host.hostname');
 const port = config.get('host.port');
 const staticDirPath = '.' + path.resolve(__dirname, '/static');
@@ -25,6 +26,7 @@ const logFilePath = path.resolve(__dirname, 'log/app.log');
 const errorFilePath = path.resolve(__dirname, 'log/error.log');
 const mongooseStart = new db_1.default();
 mongooseStart.setUpDb();
+mysql_1.default.testConnection();
 const app = new Koa();
 app.use(async (_, next) => {
     try {

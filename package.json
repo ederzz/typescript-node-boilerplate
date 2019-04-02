@@ -7,7 +7,8 @@
     "start": "cp -r ./views/ ./dist/views && cp -r ./log/ ./dist/log && tsc && node --inspect dist/index.js",
     "build": "cp -r ./views/ ./dist/views && cp -r ./log/ ./dist/log && tsc",
     "ts_node": "ts-node --files index.ts",
-    "dev": "npx nodemon"
+    "dev": "npx nodemon",
+    "init_mysql": "tsc && node dist/models/mysql/syncDb.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +27,8 @@
     "koa2-cors": "^2.0.6",
     "lodash": "^4.17.11",
     "mongoose": "^5.0.9",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.2.8",
     "shortid": "^2.2.14"
   },
   "devDependencies": {
@@ -41,6 +44,7 @@
     "@types/mongodb": "^3.1.18",
     "@types/mongoose": "^5.3.5",
     "@types/node": "^10.12.18",
+    "@types/sequelize": "^4.27.46",
     "@types/shortid": "^0.0.29",
     "chalk": "^2.4.2",
     "cross-env": "^5.2.0",

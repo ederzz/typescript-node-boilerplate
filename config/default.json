@@ -9,6 +9,13 @@
         "username": "",
         "password": ""
     },
+    "mysql": {
+        "db": "ts-node",
+        "userName": "root",
+        "password": "root",
+        "host": "localhost",
+        "dialect": "mysql"
+    },
     "host": {
         "hostname": "localhost",
         "port": 3002
