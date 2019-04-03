@@ -6,11 +6,17 @@ interface IBase64 {
     _utf8_decode(input: string): string
 }
 
+type CustomError = Error & {
+    status: number
+}
+
+type ResStatus = 500 | 502 | 503 | 404 | 403 | 401 | 400 | 301 | 302
+
 /**
  * parse one url query, return a object
  * @param {String} query url query str
  */
-const parseUrlQuery = (query: string): object => {
+export const parseUrlQuery = (query: string): object => {
     const paramsArr: string[] = query.split('&')
     const reg: RegExp = /^.*\=.*$/
     const obj: Record<string, string> = {}
@@ -24,7 +30,7 @@ const parseUrlQuery = (query: string): object => {
     return obj
 }
 
-var Base64: IBase64 = {
+export var Base64: IBase64 = {
     // private property
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
     // public method for encoding
@@ -150,8 +156,30 @@ var Base64: IBase64 = {
         return string;
     }
   }
-  
-export default {
-    parseUrlQuery,
-    Base64
+
+// generate response for client when catch one error.
+export function genErrRes({
+    status,
+    message
+}: {
+    status: number,
+    message: string
+}) {
+    return {
+        status,
+        message
+    }
+}
+
+export function genErrObj({
+    status,
+    message
+}: {
+    status: ResStatus,
+    message: string
+}) {
+    const err = new Error(message);
+    (<CustomError>err).status = status
+
+    return err
 }

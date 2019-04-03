@@ -5,6 +5,9 @@ async function syncDb() {
     await schema_1.Student.sync({
         force: true
     });
+    await schema_1.Project.sync({
+        force: true
+    });
 }
 exports.syncDb = syncDb;
 syncDb();

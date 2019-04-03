@@ -15,9 +15,11 @@ import apiTestRouter from './router/apiTest'
 import githubApiRouter from './router/githubApi'
 import uploadRouter from './router/upload'
 import crawlerRouter from './router/crawler'
+import studentRouter from './router/student'
 import { mimeCollections } from './constants'
 import MongooseStart from './models/db'
 import mysqlDb from './models/mysql'
+import { genErrRes } from './utils'
 
 const hostname: string = config.get('host.hostname')
 const port: number = config.get('host.port')
@@ -31,10 +33,12 @@ mysqlDb.testConnection()
 const app = new Koa()
 
 // error log
-app.use(async (_, next) => {
+app.use(async (ctx, next) => {
     try {
         await next()
     } catch (err) {
+        ctx.response.status = err.status || 500
+        ctx.body = genErrRes(err)
         const errorLog: string = `${new Date()} 发生错误:\n${err.stack}\n`
         fs.appendFileSync(errorFilePath, errorLog)
     }
@@ -105,6 +109,7 @@ app.use(apiTestRouter.routes())
 app.use(githubApiRouter.routes())
 app.use(uploadRouter.routes())
 app.use(crawlerRouter.routes())
+app.use(studentRouter.routes())
 
 app.listen(port, () => {
     console.log(chalk.green(`server is running at ${hostname}:${port}`));

@@ -16,9 +16,11 @@ const apiTest_1 = require("./router/apiTest");
 const githubApi_1 = require("./router/githubApi");
 const upload_1 = require("./router/upload");
 const crawler_1 = require("./router/crawler");
+const student_1 = require("./router/student");
 const constants_1 = require("./constants");
 const db_1 = require("./models/db");
 const mysql_1 = require("./models/mysql");
+const utils_1 = require("./utils");
 const hostname = config.get('host.hostname');
 const port = config.get('host.port');
 const staticDirPath = '.' + path.resolve(__dirname, '/static');
@@ -28,11 +30,13 @@ const mongooseStart = new db_1.default();
 mongooseStart.setUpDb();
 mysql_1.default.testConnection();
 const app = new Koa();
-app.use(async (_, next) => {
+app.use(async (ctx, next) => {
     try {
         await next();
     }
     catch (err) {
+        ctx.response.status = err.status;
+        ctx.body = utils_1.genErrRes(err);
         const errorLog = `${new Date()} 发生错误:\n${err.stack}\n`;
         fs.appendFileSync(errorFilePath, errorLog);
     }
@@ -85,6 +89,7 @@ app.use(apiTest_1.default.routes());
 app.use(githubApi_1.default.routes());
 app.use(upload_1.default.routes());
 app.use(crawler_1.default.routes());
+app.use(student_1.default.routes());
 app.listen(port, () => {
     console.log(chalk_1.default.green(`server is running at ${hostname}:${port}`));
     console.log(process.env.NODE_ENV);

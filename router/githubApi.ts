@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio'
 import * as Router from 'koa-router'
 import axios from 'axios'
 import { setWith } from 'lodash'
-import utils from '../utils'
+import * as utils from '../utils'
 
 type Month = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'
 interface MonthContributions {

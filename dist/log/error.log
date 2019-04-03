@@ -1,0 +1,27 @@
+Wed Apr 03 2019 17:15:35 GMT+0800 (GMT+08:00) 发生错误:
+Error: 错误发生
+    at Object.genErrObj (/Users/shenyiling/gitPro/typescript-node-boilerplate/dist/utils.js:120:17)
+    at Object.getStudents (/Users/shenyiling/gitPro/typescript-node-boilerplate/dist/services/student.js:15:19)
+    at router.get (/Users/shenyiling/gitPro/typescript-node-boilerplate/dist/router/student.js:19:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-compose/index.js:44:32)
+    at next (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-compose/index.js:45:18)
+    at /Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:346:16
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-compose/index.js:44:32)
+    at /Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-compose/index.js:36:12
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:351:31)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:332:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:332:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:332:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:332:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:332:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-router/lib/router.js:332:32)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at cors (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa2-cors/dist/index.js:91:15)
+    at dispatch (/Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa/node_modules/koa-compose/index.js:42:32)
+    at /Users/shenyiling/gitPro/typescript-node-boilerplate/node_modules/koa-body/index.js:110:14

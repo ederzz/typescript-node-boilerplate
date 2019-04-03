@@ -16,7 +16,7 @@ Student.init({
         autoIncrement: true
     },
     name: {
-        type: new DataTypes.STRING(),
+        type: new DataTypes.STRING(10),
         allowNull: false
     },
     age: {
@@ -28,6 +28,39 @@ Student.init({
     sequelize: mysqlDb.sequelize
 })
 
+class Project extends Model {
+    public id!: number
+    public projectName!: string
+    public projectCycle!: number
+    public type!: string
+}
+
+Project.init({
+    id: {
+        type: new DataTypes.INTEGER(),
+        primaryKey: true,
+        autoIncrement: true
+    },
+    projectName: {
+        type: new DataTypes.STRING(20),
+        allowNull: false
+    },
+    projectCycle: {
+        type: new DataTypes.INTEGER(),
+        allowNull: false
+    },
+    type: {
+        type: new DataTypes.STRING(20),
+        allowNull: false
+    }
+}, {
+    tableName: 'projects',
+    sequelize: mysqlDb.sequelize
+})
+
+Student.hasMany(Project)
+
 export {
-    Student
+    Student,
+    Project
 }

@@ -9,12 +9,15 @@ class MysqlDb {
         this.sequelize = new sequelize_1.Sequelize(db, userName, password, {
             host,
             dialect,
+            operatorsAliases: false,
             pool: {
-                max: 5,
+                max: 30,
                 min: 0,
                 acquire: 30000,
                 idle: 10000
-            }
+            },
+            timezone: "+08:00",
+            logging: false
         });
     }
     testConnection() {

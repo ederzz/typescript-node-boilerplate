@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const parseUrlQuery = (query) => {
+exports.parseUrlQuery = (query) => {
     const paramsArr = query.split('&');
     const reg = /^.*\=.*$/;
     const obj = {};
@@ -12,13 +12,13 @@ const parseUrlQuery = (query) => {
     });
     return obj;
 };
-var Base64 = {
+exports.Base64 = {
     _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
     encode: function (input) {
         var output = "";
         var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
         var i = 0;
-        input = Base64._utf8_encode(input);
+        input = exports.Base64._utf8_encode(input);
         while (i < input.length) {
             chr1 = input.charCodeAt(i++);
             chr2 = input.charCodeAt(i++);
@@ -59,7 +59,7 @@ var Base64 = {
                 output = output + String.fromCharCode(chr3);
             }
         }
-        output = Base64._utf8_decode(output);
+        output = exports.Base64._utf8_decode(output);
         return output;
     },
     _utf8_encode: function (string) {
@@ -109,7 +109,16 @@ var Base64 = {
         return string;
     }
 };
-exports.default = {
-    parseUrlQuery,
-    Base64
-};
+function genErrRes({ status, message }) {
+    return {
+        status,
+        message
+    };
+}
+exports.genErrRes = genErrRes;
+function genErrObj({ status, message }) {
+    const err = new Error(message);
+    err.status = status;
+    return err;
+}
+exports.genErrObj = genErrObj;

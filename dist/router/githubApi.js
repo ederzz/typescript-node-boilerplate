@@ -4,8 +4,8 @@ const cheerio = require("cheerio");
 const Router = require("koa-router");
 const axios_1 = require("axios");
 const lodash_1 = require("lodash");
-const utils_1 = require("../utils");
-const { parseUrlQuery } = utils_1.default;
+const utils = require("../utils");
+const { parseUrlQuery } = utils;
 const router = new Router({
     prefix: '/oauth'
 });
