@@ -20,7 +20,12 @@ router.post('/project', async (ctx: any, _) => {
 })
 
 router.get('/student/list', async (ctx: any, _) => {
-    const res = await services.getStudents()
+    const query = {
+        pageNo: 1,
+        pageSize: 20,
+        ...ctx.query
+    }
+    const res = await services.getStudents(query)
     ctx.body = res
 })
 

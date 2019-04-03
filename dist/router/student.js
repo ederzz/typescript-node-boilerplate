@@ -16,7 +16,8 @@ router.post('/project', async (ctx, _) => {
     };
 });
 router.get('/student/list', async (ctx, _) => {
-    const res = await services.getStudents();
+    const query = Object.assign({ pageNo: 1, pageSize: 20 }, ctx.query);
+    const res = await services.getStudents(query);
     ctx.body = res;
 });
 exports.default = router;

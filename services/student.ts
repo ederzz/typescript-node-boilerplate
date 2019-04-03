@@ -15,7 +15,6 @@ interface IProject {
 }
 
 export function createStudent(data: IStudent) {
-    console.log(data)
     return Student.create(data)
 }
 
@@ -23,17 +22,27 @@ export function createProject(data: IProject) {
     return Project.create(data)
 }
 
-export function getStudents() {
+export function getStudents({
+    pageNo,
+    pageSize
+}: {
+    pageNo: number,
+    pageSize: number
+}) {
     return Student.findAll({
         order: [
             ['updatedAt', 'DESC']
         ],
-        offset: 0,
-        limit: 1,
+        offset: (pageNo - 1) * pageSize,
+        limit: pageSize,
         include: [
             {
                 model: Project
             }
         ]
-    })
+    }).then(ret => ({
+        list: ret,
+        pageNo,
+        pageSize
+    }))
 }

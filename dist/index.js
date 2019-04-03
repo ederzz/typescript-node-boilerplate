@@ -35,7 +35,7 @@ app.use(async (ctx, next) => {
         await next();
     }
     catch (err) {
-        ctx.response.status = err.status;
+        ctx.response.status = err.status || 500;
         ctx.body = utils_1.genErrRes(err);
         const errorLog = `${new Date()} 发生错误:\n${err.stack}\n`;
         fs.appendFileSync(errorFilePath, errorLog);
