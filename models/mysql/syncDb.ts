@@ -1,13 +1,13 @@
 import {
-    Student,
-    Project
+    student,
+    project
 } from './schema'
 
 export async function syncDb () {
-    await Student.sync({
+    await student.sync({
         force: true
     })
-    await Project.sync({
+    await project.sync({
         force: true
     })
 }

@@ -3,13 +3,13 @@ import {
 } from 'sequelize'
 import mysqlDb from './index'
 
-class Student extends Model {
+class student extends Model {
     public id!: number
     public name!: string
     public age!: number
 }
 
-Student.init({
+student.init({
     id: {
         type: new DataTypes.INTEGER(),
         primaryKey: true,
@@ -28,14 +28,14 @@ Student.init({
     sequelize: mysqlDb.sequelize
 })
 
-class Project extends Model {
+class project extends Model {
     public id!: number
     public projectName!: string
     public projectCycle!: number
     public type!: string
 }
 
-Project.init({
+project.init({
     id: {
         type: new DataTypes.INTEGER(),
         primaryKey: true,
@@ -58,9 +58,12 @@ Project.init({
     sequelize: mysqlDb.sequelize
 })
 
-Student.hasMany(Project)
+student.hasMany(project, {
+    as: 'projects',
+    foreignKey: 'studentId'
+})
 
 export {
-    Student,
-    Project
+    student,
+    project
 }

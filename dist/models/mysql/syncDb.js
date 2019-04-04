@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const schema_1 = require("./schema");
 async function syncDb() {
-    await schema_1.Student.sync({
+    await schema_1.student.sync({
         force: true
     });
-    await schema_1.Project.sync({
+    await schema_1.project.sync({
         force: true
     });
 }

@@ -1,11 +1,12 @@
 import {
-    Student,
-    Project
+    student,
+    project
 } from '../models/mysql/schema'
 
 interface IStudent {
     name: string,
-    age: number
+    age: number,
+    projects: IProject[]
 }
 
 interface IProject {
@@ -15,11 +16,17 @@ interface IProject {
 }
 
 export function createStudent(data: IStudent) {
-    return Student.create(data)
+    return student.create(data, {
+        include: [
+            {
+                association: 'projects'
+            }
+        ]
+    })
 }
 
 export function createProject(data: IProject) {
-    return Project.create(data)
+    return project.create(data)
 }
 
 export function getStudents({
@@ -29,7 +36,7 @@ export function getStudents({
     pageNo: number,
     pageSize: number
 }) {
-    return Student.findAll({
+    return student.findAll({
         order: [
             ['updatedAt', 'DESC']
         ],
@@ -37,7 +44,8 @@ export function getStudents({
         limit: pageSize,
         include: [
             {
-                model: Project
+                model: project,
+                as: 'projects'
             }
         ]
     }).then(ret => ({

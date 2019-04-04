@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const index_1 = require("./index");
-class Student extends sequelize_1.Model {
+class student extends sequelize_1.Model {
 }
-exports.Student = Student;
-Student.init({
+exports.student = student;
+student.init({
     id: {
         type: new sequelize_1.DataTypes.INTEGER(),
         primaryKey: true,
@@ -23,10 +23,10 @@ Student.init({
     tableName: 'students',
     sequelize: index_1.default.sequelize
 });
-class Project extends sequelize_1.Model {
+class project extends sequelize_1.Model {
 }
-exports.Project = Project;
-Project.init({
+exports.project = project;
+project.init({
     id: {
         type: new sequelize_1.DataTypes.INTEGER(),
         primaryKey: true,
@@ -48,4 +48,7 @@ Project.init({
     tableName: 'projects',
     sequelize: index_1.default.sequelize
 });
-Student.hasMany(Project);
+student.hasMany(project, {
+    as: 'projects',
+    foreignKey: 'studentId'
+});
